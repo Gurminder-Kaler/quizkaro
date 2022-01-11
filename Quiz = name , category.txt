@@ -1,0 +1,5 @@
+Quiz = name , category
+QuizCategory = name
+----------------------
+QuizQuestion = name, quizId, correct: optionId
+QuizOption = name, questionId
