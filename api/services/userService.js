@@ -5,24 +5,22 @@ const messages = require('@constants/messages')
 const User = require('@models/userModel')
 const signUpValidator = require('@validations/authRequest/signUpValidator')
 const axios = require('axios')
-const { OAuth2Client } = require('google-auth-library')
-const { GOOGLE } = require('@constants/keys')
 
 //done-===sign up starts here
 const signUpServiceFunc = async (req, res) => {
   try {
     console.log('console//////', req.body)
     // Check Validation
-    // const { errors, isValid } = signUpValidator(req.body);
-    // if (!isValid) {
-    //   // Return any errors with 400 status
+    const { errors, isValid } = signUpValidator(req.body)
+    if (!isValid) {
+      // Return any errors with 400 status
 
-    //   res.json({
-    //     status: 400,
-    //     success: false,
-    //     message: errors,
-    //   });
-    // }
+      res.json({
+        status: 400,
+        success: false,
+        message: errors
+      })
+    }
     console.log('line 31')
     await User.find({
       email: req.body.email
@@ -134,6 +132,7 @@ const signInServiceFunc = async (req, res) => {
             data: {
               id: user._id,
               firstName: user.firstName,
+              role: user.role,
               lastName: user.lastName,
               email: user.email,
               userName: user.userName
@@ -153,6 +152,78 @@ const signInServiceFunc = async (req, res) => {
         status: 500,
         success: false,
         message: err
+      })
+    })
+}
+
+const getAllUsersServiceFunc = async (req, res) => {
+  User.find()
+    .select('-deletedAt')
+    .exec()
+    .then(docs => {
+      res.json({
+        status: 200,
+        count: docs.length,
+        users: docs.map(doc => {
+          return {
+            _id: doc && doc._id,
+            firstName: doc && doc.firstName,
+            lastName: doc && doc.lastName,
+            userName: doc && doc.userName,
+            role: doc && doc.role,
+            email: doc && doc.email,
+            createdAt: doc && doc.createdAt,
+            updatedAt: doc && doc.updatedAt
+          }
+        })
+      })
+    })
+    .catch(err => {
+      res.json({
+        status: 500,
+        success: false,
+        message: err
+      })
+    })
+}
+
+const getUserViaIdServiceFunc = async (req, res) => {
+  // const { errors, isValid } = myAccountValidator(req.body)
+  // if (!isValid) {
+  //   res.json({
+  //     status: 400,
+  //     success: false,
+  //     message: errors
+  //   })
+  // }
+  console.log(req.body)
+  const filter = {
+    _id: req.body.userId
+  }
+  User.findOne(filter)
+    .select('-deletedAt')
+    .exec()
+    .then(user => {
+      res.json({
+        success: true,
+        message: messages.SUCCESS.USER.FETCHED,
+        data: {
+          _id: user && user._id,
+          firstName: user && user.firstName,
+          lastName: user && user.lastName,
+          userName: user && user.userName,
+          role: user && user.role,
+          email: user && user.email,
+          createdAt: user && user.createdAt,
+          updatedAt: user && user.updatedAt
+        }
+      })
+    })
+    .catch(err => {
+      res.json({
+        status: 500,
+        success: false,
+        message: 'err'
       })
     })
 }
@@ -217,6 +288,8 @@ const updateUserServiceFunc = async (req, res) => {
 
 const userService = (module.exports = {
   signUpServiceFunc,
+  getAllUsersServiceFunc,
+  getUserViaIdServiceFunc,
   signInServiceFunc,
   updateUserServiceFunc
 })

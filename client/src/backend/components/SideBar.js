@@ -63,247 +63,29 @@ const SideBar = () => {
             </li>
             <li className='nav-item'>
               <Link
-                to='/admin/profession'
+                to='/admin/quiz'
                 className={
-                  splitUrl[1] === 'admin' && splitUrl[2] === 'profession'
+                  splitUrl[1] === 'admin' && splitUrl[2] === 'quiz'
                     ? 'active nav-link'
                     : 'nav-link'
                 }
               >
-                <i className='nav-icon far fa-user' />
-                <p>Professions</p>
+                <i className='nav-icon fas fa-question' />
+                <p>Quiz</p>
               </Link>
             </li>
             <li className='nav-item'>
               <Link
-                to='/admin/smileySticker'
+                to='/admin/quizCategory'
                 className={
-                  splitUrl[1] === 'admin' && splitUrl[2] === 'smileySticker'
+                  splitUrl[1] === 'admin' && splitUrl[2] === 'quizCategory'
                     ? 'active nav-link'
                     : 'nav-link'
                 }
               >
-                <i className='nav-icon fas fa-grin-squint' />
-                <p>Smilies & Stickers</p>
+                <i className='nav-icon fas fa-question' />
+                <p>Quiz Category</p>
               </Link>
-            </li>
-            <li
-              className='nav-item has-treeview'
-              className={
-                splitUrl[1] === 'admin' &&
-                (splitUrl[2] === 'guidelines' ||
-                  splitUrl[2] === 'contactus' ||
-                  splitUrl[2] === 'aboutus')
-                  ? 'nav-item has-treeview menu-open'
-                  : 'nav-item'
-              }
-            >
-              <Link to='#' className='nav-link'>
-                <i className='nav-icon fas fa-copy' />
-                <p>
-                  CMS
-                  <i className='fas fa-angle-left right' />
-                </p>
-              </Link>
-              <ul className='nav nav-treeview'>
-                <li className='nav-item'>
-                  <Link
-                    to='/admin/guidelines'
-                    className={
-                      splitUrl[1] === 'admin' && splitUrl[2] === 'guidelines'
-                        ? 'active nav-link'
-                        : 'nav-link'
-                    }
-                  >
-                    <i className='nav-icon fas fa-edit' />
-                    <p>Guidelines</p>
-                  </Link>
-                </li>
-                <li className='nav-item'>
-                  <Link
-                    to='/admin/contactus'
-                    className={
-                      splitUrl[1] === 'admin' && splitUrl[2] === 'contactus'
-                        ? 'active nav-link'
-                        : 'nav-link'
-                    }
-                  >
-                    <i className='nav-icon fa fa-edit' />
-                    <p>Contact Us</p>
-                  </Link>
-                </li>
-                <li className='nav-item'>
-                  <Link
-                    to='/admin/aboutus'
-                    className={
-                      splitUrl[1] === 'admin' && splitUrl[2] === 'aboutus'
-                        ? 'active nav-link'
-                        : 'nav-link'
-                    }
-                  >
-                    <i className='nav-icon fas fa-edit' />
-                    <p>About Us</p>
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            {console.log(
-              '0',
-              splitUrl[0],
-              '1',
-              splitUrl[1],
-              '2',
-              splitUrl[2],
-              '3',
-              splitUrl[3]
-            )}
-            <li
-              className={
-                splitUrl[1] === 'admin' &&
-                splitUrl[2] === 'helpAndSupport' &&
-                (splitUrl[3] === 'viewAllReportMessages' ||
-                  splitUrl[3] === 'viewAllReportTypes')
-                  ? 'nav-item has-treeview menu-open'
-                  : 'nav-item'
-              }
-            >
-              <Link to='#' className='nav-link'>
-                <i className='nav-icon fas fa-copy' />
-                <p>
-                  Help & Support
-                  <i className='fas fa-angle-left right' />
-                </p>
-              </Link>
-              <ul className='nav nav-treeview'>
-                <li className='nav-item'>
-                  <Link
-                    to='/admin/helpAndSupport/viewAllReportMessages'
-                    className={
-                      splitUrl[1] === 'admin' &&
-                      splitUrl[2] === 'helpAndSupport' &&
-                      splitUrl[3] === 'viewAllReportMessages'
-                        ? 'active nav-link'
-                        : 'nav-link'
-                    }
-                  >
-                    <i className='nav-icon fas fa-edit' />
-                    <p>View Report Messages</p>
-                  </Link>
-                </li>
-                <li className='nav-item'>
-                  <Link
-                    to='/admin/helpAndSupport/viewAllReportTypes'
-                    className={
-                      splitUrl[1] === 'admin' &&
-                      splitUrl[2] === 'helpAndSupport' &&
-                      splitUrl[3] === 'viewAllReportTypes'
-                        ? 'active nav-link'
-                        : 'nav-link'
-                    }
-                  >
-                    <i className='far fa-circle nav-icon' />
-                    <p>Manage Report Type</p>
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li
-              className={
-                splitUrl[1] === 'admin' &&
-                splitUrl[2] === 'company' &&
-                (splitUrl[3] === 'manage' || splitUrl[3] === 'category')
-                  ? 'nav-item has-treeview menu-open'
-                  : 'nav-item'
-              }
-            >
-              <Link to='#' className='nav-link'>
-                <i className='nav-icon fas fa-home' />
-                <p>
-                  Company
-                  <i className='fas fa-angle-left right' />
-                </p>
-              </Link>
-              <ul className='nav nav-treeview'>
-                <li className='nav-item'>
-                  <Link
-                    to='/admin/company/manage'
-                    className={
-                      splitUrl[1] === 'admin' &&
-                      splitUrl[2] === 'company' &&
-                      splitUrl[3] === 'manage'
-                        ? 'active nav-link'
-                        : 'nav-link'
-                    }
-                  >
-                    <i className='fa fa-home nav-icon' />
-                    <p>Manage Companies</p>
-                  </Link>
-                </li>
-                <li className='nav-item'>
-                  <Link
-                    to='/admin/company/category'
-                    className={
-                      splitUrl[1] === 'admin' &&
-                      splitUrl[2] === 'company' &&
-                      splitUrl[3] === 'category'
-                        ? 'active nav-link'
-                        : 'nav-link'
-                    }
-                  >
-                    <i className='nav-icon fas fa-list-alt' />
-                    <p> Manage Category </p>
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li
-              className={
-                splitUrl[1] === 'admin' &&
-                splitUrl[2] === 'company' &&
-                (splitUrl[3] === 'manage' || splitUrl[3] === 'category')
-                  ? 'nav-item has-treeview menu-open'
-                  : 'nav-item'
-              }
-            >
-              <Link to='#' className='nav-link'>
-                <i className='nav-icon fas fa-comments' />
-                <p>
-                  Chat & messages
-                  <i className='fas fa-angle-left right' />
-                </p>
-              </Link>
-              <ul className='nav nav-treeview'>
-                <li className='nav-item'>
-                  <Link
-                    to='/admin/chat/groups'
-                    className={
-                      splitUrl[1] === 'admin' &&
-                      splitUrl[2] === 'chat' &&
-                      splitUrl[3] === 'groups'
-                        ? 'active nav-link'
-                        : 'nav-link'
-                    }
-                  >
-                    <i className='fa fa-comments nav-icon' />
-                    <p>Chat Groups</p>
-                  </Link>
-                </li>
-                <li className='nav-item'>
-                  <Link
-                    to='/admin/company/category'
-                    className={
-                      splitUrl[1] === 'admin' &&
-                      splitUrl[2] === 'company' &&
-                      splitUrl[3] === 'category'
-                        ? 'active nav-link'
-                        : 'nav-link'
-                    }
-                  >
-                    <i className='nav-icon fas fa-list-alt' />
-                    <p> Manage Category </p>
-                  </Link>
-                </li>
-              </ul>
             </li>
           </ul>
         </nav>

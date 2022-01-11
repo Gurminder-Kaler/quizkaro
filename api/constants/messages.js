@@ -15,7 +15,8 @@ module.exports = Object.freeze({
     QUIZ: {
       CATEGORY: {
         FOUND: 'Quiz Categories found ' + S,
-        SAVED: 'Quiz Category saved ' + S
+        SAVED: 'Quiz Category saved ' + S,
+        UPDATED: 'Quiz Category updated ' + S
       },
       QUESTION: {
         SAVED: 'Quiz Question saved ' + S

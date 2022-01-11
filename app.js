@@ -8,17 +8,6 @@ const mongoose = require('mongoose')
 
 //routes which should handle requests
 const userRouter = require('./api/routes/userRoute')
-const postRouter = require('./api/routes/postRoute')
-const professionRouter = require('./api/routes/professionRoute')
-const forgotPasswordRouter = require('./api/routes/forgotPasswordRoute')
-const friendRequestRouter = require('./api/routes/friendRequestRoute')
-const smileyStickerRouter = require('./api/routes/smileyStickerRoute')
-const searchRouter = require('./api/routes/searchRoute')
-const guidelineRouter = require('./api/routes/guidelineRoute')
-const settingRouter = require('./api/routes/settingRoute')
-const helpAndSupportRouter = require('./api/routes/helpAndSupportRoute')
-const companyRouter = require('./api/routes/companyRoute')
-const chatRouter = require('./api/routes/chatRoute')
 const quizRouter = require('./api/routes/quizRoute')
 
 mongoose.connect(process.env.MONGO_URI, {
@@ -58,17 +47,6 @@ app.use((req, res, next) => {
 
 app.use('/user', userRouter)
 app.use('/quiz', quizRouter)
-app.use('/post', postRouter)
-app.use('/friendRequest', friendRequestRouter)
-app.use('/profession', professionRouter)
-app.use('/forgotPassword', forgotPasswordRouter)
-app.use('/smileySticker', smileyStickerRouter)
-app.use('/search', searchRouter)
-app.use('/guideline', guidelineRouter)
-app.use('/setting', settingRouter)
-app.use('/helpAndSupport', helpAndSupportRouter)
-app.use('/company', companyRouter)
-app.use('/chat', chatRouter)
 
 app.use((req, res, next) => {
   const error = new Error('URL Not found or Please Check POST or GET')

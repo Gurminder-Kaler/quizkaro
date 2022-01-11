@@ -6,7 +6,7 @@ const QuizResponse = require('@models/quizResponseModel')
 const Quiz = require('@models/quizModel')
 const User = require('@models/userModel')
 const messages = require('@constants/messages')
-const addReportTypeValidator = require('@validations/helpAndSupportRequest/addReportTypeValidator')
+// const addReportTypeValidator = require('@validations/helpAndSupportRequest/addReportTypeValidator')
 
 // get all quiz categories
 const getAllQuizCategoriesServiceFunc = async (req, res) => {
@@ -83,6 +83,35 @@ const saveQuizCategoryServiceFunc = async (req, res) => {
       res.json({
         success: true,
         message: messages.SUCCESS.QUIZ.CATEGORY.SAVED,
+        data: result
+      })
+    })
+    .catch(err => {
+      res.json({
+        status: 500,
+        success: false,
+        message: err.message ? err.message.message : ''
+      })
+    })
+}
+
+//update quiz category
+const updateQuizCategoryServiceFunc = async (req, res) => {
+  let obj = {
+    name: req.body.name
+  }
+  QuizCategory.findOneAndUpdate(
+    {
+      _id: req.body.id
+    },
+    { $set: obj },
+    { new: true }
+  )
+    .then(result => {
+      console.log('result', result)
+      res.json({
+        success: true,
+        message: messages.SUCCESS.QUIZ.CATEGORY.UPDATED,
         data: result
       })
     })
@@ -225,5 +254,6 @@ module.exports = {
   saveQuizQuestionServiceFunc,
   saveQuizServiceFunc,
   saveQuizOptionServiceFunc,
+  updateQuizCategoryServiceFunc,
   deleteQuizOptionServiceFunc
 }
